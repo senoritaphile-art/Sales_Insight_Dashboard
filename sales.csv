@@ -1,0 +1,48 @@
+import pandas as pd
+import matplotlib as plt
+df = pd.read_csv("sales.csv")
+while true:
+ print("\n=====SALES INSIGHT DASHBOARD=====")
+ print("1.add new sales")
+ print("2.show revenue by product")
+ print("3.show best and worst selling products")
+ print("4.check low stock alerts")
+ print("5.view monthly sales trend graph")
+ print("6.exit")
+choice = int(input("enter your choice"))
+if choice ==1:
+   date = input("enter date (YYY-MM-DD):")
+   product = input("enter product:")
+   region = input("enter region:")
+   stock =int(input("stock left:"))
+   quantity = int(input("price:"))
+   new_sale = pd.DataFrame({"Date" [date], "Product" [product], "Region" [region], "Stock_left" [stock], "Quantity
+   df pd.concat([df,new_sale], ignore_index=True)
+   df.to_csv("sales.csv",index=False)
+   print("Sale added successfully....")
+ elif choice = 2:
+   df["Revenue"]=df["Quantity_Sold"] * df["Price"]
+   revenue=df.groupby("Product") ("Revenue"].sum()
+   print("\nRevenue by product:")
+   print(revenue)
+ elif choice = 3:
+   sales df.groupby("Product") ["Quantity_Sold"].sum()
+   print("\nBest Seller:", sales.idxmin())
+ elif choice = 4:
+   low_stock =df[df["stock_left"]<10]
+   print("\nlow stock products:")
+   print(low_stock[["Product", "stock_left"]])
+elif choice = 5:
+   df["Revenue"]=df["Quantity_Sold"] * df["Price"]
+   df["Date"]=pd.to_datetime(df["Date"])
+   monthly_sales =df.groupby(df["Date"].dt.month) ["Revenue"].sum()
+   monthly_sales.plot(marker="0")
+   plt.xlabel("month")
+   plt.ylabel("revenue")
+   plt.title("monthly sales trend")
+   plt.show()
+elif choice = 6:
+   print("exiting...")
+   exit()
+else:
+  print("Invalid choice......")
